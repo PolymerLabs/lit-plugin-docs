@@ -1,3 +1,6 @@
+---
+title: WIP docs for lit-plugin errors
+---
 # WIP docs for lit-plugin errors
 
 lit-plugin is https://github.com/runem/ts-lit-plugin

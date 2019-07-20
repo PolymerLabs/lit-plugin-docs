@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Unknown tag error | lit-plugin-docs</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Unknown tag error" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/unknown-tag.html" />
+<meta property="og:url" content="http://localhost:4000/unknown-tag.html" />
+<meta property="og:site_name" content="lit-plugin-docs" />
+<script type="application/ld+json">
+{"headline":"Unknown tag error","@type":"WebPage","url":"http://localhost:4000/unknown-tag.html","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=1d2e03db5ad2a53c4a9341f1b544f1fceeb73e59">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="http://localhost:4000/">lit-plugin-docs</a></h1>
+      
+
+      <h1 id="unknown-tag-error">Unknown tag error</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unknown tag &lt;unknown-element&gt;
+  Check that you've imported the element, and that it's declared on the HTMLElementTagNameMap.
+
+19             &lt;unknown-element&gt;&lt;/unknown-element&gt;
+                ~~~~~~~~~~~~~~~
+</code></pre></div></div>
+
+<h2 id="what-this-error-means">What this error means</h2>
+
+<p>A lit-html template may contain HTML tags. These tags may be built into the browser, like <code class="highlighter-rouge">&lt;div&gt;</code>, <code class="highlighter-rouge">&lt;input&gt;</code>, or <code class="highlighter-rouge">&lt;video&gt;</code>. Or they may be custom elements declared by your code, or code that you depend on.</p>
+
+<p>This error indicates that your lit-html template references a tag that the lit-analyzer can’t resolve.</p>
+
+<p>There must be a declaration of the element to TypeScript in order for the analyzer to find it. For example:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">FancySlider</span> <span class="kd">extends</span> <span class="nx">HTMLElement</span> <span class="p">{</span>
+  <span class="nl">value</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+  <span class="c1">// etc...</span>
+<span class="p">}</span>
+<span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">'fancy-slider'</span><span class="p">,</span> <span class="nx">FancySlider</span><span class="p">);</span>
+
+<span class="nx">declare</span> <span class="nb">global</span> <span class="p">{</span>
+  <span class="kr">interface</span> <span class="nx">HTMLElementTagNameMap</span> <span class="p">{</span>
+    <span class="s1">'fancy-slider'</span><span class="p">:</span> <span class="nx">FancySlider</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="how-to-fix-it">How to fix it</h2>
+
+<p>Three conditions must hold:</p>
+
+<ol>
+  <li>There must be a type for the element in TypeScript, either because the code for the element is written in TpeScript, or because there are TypeScript typings for the element.</li>
+  <li>The type must be associated with the element’s tagname in the HTMLElementTagNameMap.</li>
+  <li>The the file where you’re using the element must depend on the declaration of the element, generally by importing it.</li>
+</ol>
+
+<p>Most commonly, you’re just missing an import for the element. If you’re importing the element, and your code works at runtime, then you need to define an interface for the element, and add it to the HTMLElementTagNameMap.</p>
+
+<h2 id="how-its-configured">How it’s configured</h2>
+
+<p>This error is enabled by default. It can be disabled by setting <code class="highlighter-rouge">skipUnknownTags</code> to true.</p>
+
+<p>To ignore errors about tags without declaring them to the TypeScript type system, you can add them to <code class="highlighter-rouge">globalTags</code>, however it is almost always a better idea to declare a type instead.</p>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>
