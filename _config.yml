@@ -7,6 +7,3 @@ github: [metadata]
  jailed: false
  theme: jekyll-theme-primer
  gfm_quirks: paragraph_end
-name: "lit-plugin documentation"
-exclude: 
-  - README.md
