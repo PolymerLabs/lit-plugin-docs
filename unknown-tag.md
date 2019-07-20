@@ -2,10 +2,10 @@
 
 ```
 Unknown tag <unknown-element>
-  Check that you've imported the element, and that it's declared on the HTMLElementTagNameMap.
+Check that you've imported the element, and that it's declared on the HTMLElementTagNameMap.
 
-19             <unknown-element></unknown-element>
-                ~~~~~~~~~~~~~~~
+             <unknown-element></unknown-element>
+              ~~~~~~~~~~~~~~~
 ```
 
 ## What this error means

@@ -1,13 +1,13 @@
 ---
 ---
 
+@import "./pygments.css";
+@import "./theme.css";
+
 .markdown-body {
   margin: 30px;
   max-width: 720px;
 }
-
-@import "./pygments.css";
-@import "./theme.css";
 
 /* Tagname styles */
 body {
