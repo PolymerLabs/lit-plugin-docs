@@ -1,4 +1,4 @@
-## Unknown tag
+# Unknown tag error
 
 ```
 Unknown tag <unknown-element>
